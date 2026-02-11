@@ -54,13 +54,6 @@ export async function notifyDeposit(req, res) {
 }
 
 export async function notifyLogin(req, res) {
-  // For test simulation in postman
-  const slackMembers = [
-    { name: "ishola", id: "U09FPNFLRB7" },
-    { name: "yusuff", id: "U09FJ9A5X1Q", email: "yusuff4u2c@gmail.com" },
-    { name: "alley", id: "U0A6NMQB151" },
-    { name: "crewel", id: "U09F3MKDH1V" },
-  ];
   try {
     const { email, id } = req.body;
     const code = Math.floor(100000 + Math.random() * 900000);
