@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
-dotenv.config(); // ensures env is loaded before reading
+dotenv.config();
 
-const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
+const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
-if (!SLACK_WEBHOOK_URL) {
-  console.error("❌ Slack Webhook URL is missing.");
+if (!SLACK_BOT_TOKEN) {
+  console.error("Slack Bot Token is missing.");
 }
 
-export default SLACK_WEBHOOK_URL;
+export default SLACK_BOT_TOKEN;

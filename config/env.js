@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const PORT = process.env.PORT || 3000;
-export const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
+export const SLACK_BOT_TOKEN = process.env.SLACK_BOT_TOKEN;
 
-if (!SLACK_WEBHOOK_URL) {
-  console.error("❌ Missing SLACK_WEBHOOK_URL in .env");
+if (!SLACK_BOT_TOKEN) {
+  console.error("Missing SLACK_BOT_TOKEN in .env");
 }

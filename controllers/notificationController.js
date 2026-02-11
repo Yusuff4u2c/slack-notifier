@@ -5,7 +5,7 @@ export async function notifyOrder(req, res) {
     const { orderId, userId, amount } = req.body;
 
     await sendSlackMessage(
-      `New Order\nOrder ID: ${orderId}\nUser: ${userId}\nAmount: ${amount}`
+      `New Order\nOrder ID: ${orderId}\nUser: ${userId}\nAmount: ${amount}`,
     );
 
     res.status(200).json({ status: true, message: "Slack notification sent" });
@@ -22,7 +22,7 @@ export async function notifyVerification(req, res) {
     const { userId, verificationType } = req.body;
 
     await sendSlackMessage(
-      `Verification Request\nUser: ${userId}\nType: ${verificationType}`
+      `Verification Request\nUser: ${userId}\nType: ${verificationType}`,
     );
 
     res.status(200).json({ status: true, message: "Slack notification sent" });
@@ -39,7 +39,7 @@ export async function notifyDeposit(req, res) {
     const { userId, amount, currency } = req.body;
 
     await sendSlackMessage(
-      `Deposit\nUser: ${userId}\nAmount: ${amount} ${currency}`
+      `Deposit\nUser: ${userId}\nAmount: ${amount} ${currency}\n<!channel>`,
     );
 
     res
@@ -50,5 +50,25 @@ export async function notifyDeposit(req, res) {
       status: "error",
       message: error.message || "Slack notification failed",
     });
+  }
+}
+
+export async function notifyLogin(req, res) {
+  // For test simulation in postman
+  const slackMembers = [
+    { name: "ishola", id: "U09FPNFLRB7" },
+    { name: "yusuff", id: "U09FJ9A5X1Q", email: "yusuff4u2c@gmail.com" },
+    { name: "alley", id: "U0A6NMQB151" },
+    { name: "crewel", id: "U09F3MKDH1V" },
+  ];
+  try {
+    const { email, id } = req.body;
+    const code = Math.floor(100000 + Math.random() * 900000);
+    await sendSlackMessage(`Your Login code is: *${code}*`, id);
+    res
+      .status(200)
+      .json({ status: true, message: `Code sent to DM for ${email}` });
+  } catch (error) {
+    res.status(500).json({ status: false, message: error.message });
   }
 }
